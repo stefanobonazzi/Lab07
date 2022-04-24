@@ -39,6 +39,31 @@ public class FXMLController {
     @FXML
     void doRun(ActionEvent event) {
     	txtResult.clear();
+    	int years;
+    	int hours;
+    	Nerc nerc;
+    	
+    	try {
+    		years = Integer.parseInt(txtYears.getText());
+    		hours = Integer.parseInt(txtHours.getText());
+    		nerc = cmbNerc.getValue();
+    		
+    		if(years > 10) {
+    			txtResult.appendText("ATTENZIONE: max numero di anni = 10");
+    			return;
+    		}
+    		if(hours > 87600) {
+    			txtResult.appendText("ATTENZIONE: max numero di ore = 87600");
+    			return;
+    		}
+    		
+    	} catch (NumberFormatException e) {
+    		e.printStackTrace();
+    		txtResult.appendText("Inserisci numeri interi validi!");
+    		return;
+    	}
+    	
+    	this.model.worstCaseAnalysis(nerc, years, hours);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
