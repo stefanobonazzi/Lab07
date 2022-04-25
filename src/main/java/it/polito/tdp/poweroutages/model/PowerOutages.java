@@ -1,8 +1,8 @@
 package it.polito.tdp.poweroutages.model;
 
-import java.util.Date;
+import java.sql.Date;
 
-public class PowerOutages {
+public class PowerOutages implements Comparable<PowerOutages> {
 
 	int id;
 	int event_type_id;
@@ -135,6 +135,11 @@ public class PowerOutages {
 	@Override
 	public String toString() {
 		return date_event_began+"\t"+date_event_finished+"\t"+demand_loss+"\t"+customers_affected+"\n";
+	}
+
+	@Override
+	public int compareTo(PowerOutages o) {
+		return this.date_event_began.compareTo(o.getDate_event_began());
 	}
 	
 }
