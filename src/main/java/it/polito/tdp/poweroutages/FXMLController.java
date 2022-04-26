@@ -6,6 +6,7 @@ package it.polito.tdp.poweroutages;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 import it.polito.tdp.poweroutages.model.Model;
@@ -67,9 +68,10 @@ public class FXMLController {
     	}
     	
     	List<PowerOutages> res = new ArrayList<PowerOutages>(this.model.worstCaseAnalysis(nerc, years, hours));
+    	Collections.sort(res);
     	
-    	txtResult.appendText("Tot people affected:\t" + this.model.getTot_clienti_best() + "\n");
-    	txtResult.appendText("Tot hours of outage:\t" + this.model.getTot_hours_best() + "\n");
+    	txtResult.appendText("Tot people affected: " + this.model.getTot_clienti_best() + "\n");
+    	txtResult.appendText("Tot hours of outage: " + this.model.getTot_hours_best() + "\n");
     	
     	for(PowerOutages po: res) {
     		txtResult.appendText(po.toString());

@@ -66,11 +66,14 @@ public class Model {
 		int tot = 0;
 		
 		if(!l.isEmpty())
-			for(PowerOutages po: l) 
-				tot = tot + ((int) (po.getDate_event_finished().getTime()-po.getDate_event_began().getTime()));
+			for(PowerOutages po: l) {
+				int days = po.getDate_event_finished().getDayOfYear() - po.getDate_event_began().getDayOfYear();
+				if(days == 0)
+					tot = tot + (po.getDate_event_finished().getHour()-po.getDate_event_began().getHour());
+				else
+					tot = tot + (po.getDate_event_finished().getHour()-po.getDate_event_began().getHour()) + 24*days;
+			}
 		
-		tot = tot/1000;
-		tot = tot/3600;
 		return tot;
 	}
 	

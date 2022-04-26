@@ -53,7 +53,7 @@ public class PowerOutageDAO {
 			while (res.next()) {
 				PowerOutages p = new PowerOutages(res.getInt("id"), res.getInt("event_type_id"), res.getInt("tag_id"), 
 						res.getInt("area_id"), res.getInt("nerc_id"), res.getInt("responsible_id"), res.getInt("customers_affected"), 
-						res.getDate("date_event_began"), res.getDate("date_event_finished"), res.getInt("demand_loss"));
+						res.getTimestamp("date_event_began").toLocalDateTime(), res.getTimestamp("date_event_finished").toLocalDateTime(), res.getInt("demand_loss"));
 				
 				powerOutages.add(p);
 			}

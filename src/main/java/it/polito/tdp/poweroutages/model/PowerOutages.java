@@ -1,6 +1,6 @@
 package it.polito.tdp.poweroutages.model;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class PowerOutages implements Comparable<PowerOutages> {
 
@@ -11,12 +11,12 @@ public class PowerOutages implements Comparable<PowerOutages> {
 	int nerc_id;
 	int responsible_id;
 	int customers_affected;
-	Date date_event_began;
-	Date date_event_finished;
+	LocalDateTime date_event_began;
+	LocalDateTime date_event_finished;
 	int demand_loss;
 	
 	public PowerOutages(int id, int event_type_id, int tag_id, int area_id, int nerc_id, int responsible_id,
-			int customers_affected, Date date_event_began, Date date_event_finished, int demand_loss) {
+			int customers_affected, LocalDateTime date_event_began, LocalDateTime date_event_finished, int demand_loss) {
 		this.id = id;
 		this.event_type_id = event_type_id;
 		this.tag_id = tag_id;
@@ -85,19 +85,19 @@ public class PowerOutages implements Comparable<PowerOutages> {
 		this.customers_affected = customers_affected;
 	}
 
-	public Date getDate_event_began() {
+	public LocalDateTime getDate_event_began() {
 		return date_event_began;
 	}
 
-	public void setDate_event_began(Date date_event_began) {
+	public void setDate_event_began(LocalDateTime date_event_began) {
 		this.date_event_began = date_event_began;
 	}
 
-	public Date getDate_event_finished() {
+	public LocalDateTime getDate_event_finished() {
 		return date_event_finished;
 	}
 
-	public void setDate_event_finished(Date date_event_finished) {
+	public void setDate_event_finished(LocalDateTime date_event_finished) {
 		this.date_event_finished = date_event_finished;
 	}
 
@@ -134,7 +134,7 @@ public class PowerOutages implements Comparable<PowerOutages> {
 	//Da sistemare il per le date e la loro rappresentazione
 	@Override
 	public String toString() {
-		return date_event_began+"\t"+date_event_finished+"\t"+demand_loss+"\t"+customers_affected+"\n";
+		return date_event_began.getYear()+" "+date_event_began+" "+date_event_finished+" "+demand_loss+"\t"+customers_affected+"\n";
 	}
 
 	@Override
