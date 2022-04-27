@@ -67,7 +67,12 @@ public class FXMLController {
     		return;
     	}
     	
-    	List<PowerOutages> res = new ArrayList<PowerOutages>(this.model.worstCaseAnalysis(nerc, years, hours));
+    	List<PowerOutages> res;
+    	res = this.model.worstCaseAnalysis(nerc, years, hours);
+    	if(res == null) {
+    		txtResult.setText("Non ci sono elementi che rispettano i parametri");
+    		return;
+    	}
     	Collections.sort(res);
     	
     	txtResult.appendText("Tot people affected: " + this.model.getTot_clienti_best() + "\n");

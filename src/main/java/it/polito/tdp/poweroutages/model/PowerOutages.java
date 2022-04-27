@@ -130,11 +130,25 @@ public class PowerOutages implements Comparable<PowerOutages> {
 			return false;
 		return true;
 	}
+	
+	private int tot_hours() {
+		int tot = 0;
+		
+		
+		int days = this.getDate_event_finished().getDayOfYear() - this.getDate_event_began().getDayOfYear();
+		if(days == 0)
+			tot = tot + (this.getDate_event_finished().getHour()-this.getDate_event_began().getHour());
+		else
+			tot = tot + (this.getDate_event_finished().getHour()-this.getDate_event_began().getHour()) + 24*days;
+			
+		
+		return tot;
+	}
 
 	//Da sistemare il per le date e la loro rappresentazione
 	@Override
 	public String toString() {
-		return date_event_began.getYear()+" "+date_event_began+" "+date_event_finished+" "+demand_loss+"\t"+customers_affected+"\n";
+		return date_event_began.getYear()+" "+date_event_began+" "+date_event_finished+"\t"+this.tot_hours()+"\t"+customers_affected+"\n";
 	}
 
 	@Override
